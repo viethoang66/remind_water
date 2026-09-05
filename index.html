@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f766e" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Giọt Nước" />
+    <meta name="description" content="Nhật ký uống nước mỗi ngày" />
+    <title>Giọt Nước — Thói quen tốt mỗi ngày</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="assets/icon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#today" aria-label="Giọt Nước, trang chủ">
+          <span class="brand-mark">💧</span>
+          <span>Giọt Nước</span>
+        </a>
+        <div class="topbar-actions">
+          <button class="icon-button" id="themeToggle" type="button" aria-label="Đổi giao diện">☾</button>
+          <button class="avatar" id="profileButton" type="button" aria-label="Mở hồ sơ">A</button>
+        </div>
+      </header>
+
+      <section class="welcome" id="today">
+        <div>
+          <p class="eyebrow" id="todayLabel">HÔM NAY</p>
+          <h1>Chào buổi sáng, <span id="userName">An</span> <span aria-hidden="true">☀️</span></h1>
+          <p id="encouragement">Mỗi ngụm nước là một lựa chọn tốt cho cơ thể.</p>
+        </div>
+        <div class="streak-pill" aria-label="Chuỗi ngày uống đủ nước">
+          <span aria-hidden="true">🔥</span>
+          <strong id="streakCount">0</strong>
+          <small>ngày liên tiếp</small>
+        </div>
+      </section>
+
+      <aside class="install-card" id="installCard" hidden aria-label="Cài ứng dụng">
+        <span class="install-icon">💧</span>
+        <p><strong>Đưa Giọt Nước lên màn hình chính</strong><small id="installHint">Dùng như một ứng dụng riêng, không cần mở trình duyệt.</small></p>
+        <button class="primary-button" id="installButton" type="button">Cài ứng dụng</button>
+        <button class="dismiss-install" id="dismissInstall" type="button" aria-label="Đóng hướng dẫn">×</button>
+      </aside>
+
+      <section class="dashboard-grid" aria-label="Tổng quan hôm nay">
+        <article class="card progress-card">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">TIẾN ĐỘ HÔM NAY</p>
+              <h2 id="progressText">0 ml / 2.000 ml</h2>
+            </div>
+            <button class="text-button" id="editGoal" type="button">Sửa mục tiêu</button>
+          </div>
+          <div class="progress-content">
+            <div class="progress-ring" id="progressRing" role="img" aria-label="0 phần trăm mục tiêu">
+              <div class="ring-center"><strong id="progressPercent">0%</strong><span>hoàn thành</span></div>
+            </div>
+            <div class="progress-copy">
+              <p class="progress-message" id="progressMessage">Bắt đầu thật nhẹ nhàng với một ly nước nhé.</p>
+              <div class="mini-stats">
+                <div><span class="mini-icon mint">⌛</span><span><strong id="toGoal">2.000 ml</strong><small>còn lại</small></span></div>
+                <div><span class="mini-icon yellow">✦</span><span><strong id="dailyCups">0 ly</strong><small>hôm nay</small></span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reminder-card">
+          <div class="card-heading"><div><p class="eyebrow">NHẮC UỐNG NƯỚC</p><h2>Nhịp độ vừa đủ</h2></div><span class="reminder-status" id="reminderStatus">Bật</span></div>
+          <p id="reminderCopy">Lần nhắc tiếp theo vào <strong>10:30</strong></p>
+          <div class="reminder-controls">
+            <label class="switch"><input id="reminderToggle" type="checkbox" checked /><span></span></label>
+            <button class="text-button" id="reminderSettings" type="button">Thiết lập</button>
+          </div>
+          <div class="soft-wave" aria-hidden="true"></div>
+        </article>
+      </section>
+
+      <section class="quick-add-section" aria-labelledby="quickAddTitle">
+        <div class="section-heading"><div><p class="eyebrow">GHI NHANH</p><h2 id="quickAddTitle">Bạn vừa uống bao nhiêu?</h2></div><span class="water-drops" aria-hidden="true">💧 💧 💧</span></div>
+        <div class="quick-actions">
+          <button class="amount-button" data-amount="150" type="button"><span class="glass small-glass">▰</span><strong>150 ml</strong><small>Nửa ly</small></button>
+          <button class="amount-button" data-amount="250" type="button"><span class="glass medium-glass">▰</span><strong>250 ml</strong><small>Một ly</small></button>
+          <button class="amount-button" data-amount="350" type="button"><span class="glass large-glass">▰</span><strong>350 ml</strong><small>Ly đầy</small></button>
+          <button class="amount-button" data-amount="500" type="button"><span class="bottle">♜</span><strong>500 ml</strong><small>Một chai</small></button>
+          <button class="amount-button custom" id="customAmount" type="button"><span>＋</span><strong>Tùy chỉnh</strong><small>Nhập số ml</small></button>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <article class="card week-card">
+          <div class="card-heading"><div><p class="eyebrow">7 NGÀY GẦN ĐÂY</p><h2>Nhịp độ của bạn</h2></div><span class="weekly-average" id="weeklyAverage">0 ml/ngày</span></div>
+          <div class="week-chart" id="weekChart" aria-label="Biểu đồ lượng nước 7 ngày"></div>
+          <p class="chart-note" id="chartNote">Hôm nay là ngày khởi đầu tuyệt vời.</p>
+        </article>
+
+        <article class="card log-card">
+          <div class="card-heading"><div><p class="eyebrow">NHẬT KÝ HÔM NAY</p><h2>Những lần đã uống</h2></div><button class="text-button" id="clearLog" type="button">Xóa hôm nay</button></div>
+          <ul class="drink-log" id="drinkLog" aria-live="polite"></ul>
+          <div class="empty-log" id="emptyLog"><span>💦</span><p>Chưa có lần ghi nào.<br />Hãy thêm ly nước đầu tiên!</p></div>
+        </article>
+      </section>
+
+      <section class="tip-card" aria-label="Mẹo tạo thói quen">
+        <div class="tip-icon">✦</div><div><p class="eyebrow">MẸO NHỎ HÔM NAY</p><h2>Gắn nước với một thói quen sẵn có</h2><p>Ví dụ: uống một ly ngay sau khi đánh răng hoặc trước mỗi bữa ăn.</p></div><button id="nextTip" class="text-button" type="button">Mẹo khác →</button>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Điều hướng">
+      <a class="active" href="#today"><span>⌂</span>Hôm nay</a>
+      <a href="#weekChart"><span>⌁</span>Thống kê</a>
+      <button id="navAdd" aria-label="Thêm lượng nước" type="button">＋</button>
+      <a href="#drinkLog"><span>☷</span>Nhật ký</a>
+      <a href="#profileButton"><span>☺</span>Hồ sơ</a>
+    </nav>
+
+    <dialog id="amountDialog">
+      <form method="dialog" class="dialog-card" id="amountForm">
+        <button class="dialog-close" value="cancel" aria-label="Đóng">×</button>
+        <span class="dialog-icon">💧</span>
+        <h2>Thêm lượng nước</h2>
+        <p>Nhập số ml bạn vừa uống.</p>
+        <label class="input-label" for="amountInput">Lượng nước (ml)</label>
+        <input id="amountInput" type="number" inputmode="numeric" min="1" max="5000" placeholder="Ví dụ: 280" required />
+        <div class="dialog-actions"><button value="cancel" class="secondary-button" type="button" id="cancelAmount">Hủy</button><button class="primary-button" value="default" type="submit">Thêm vào nhật ký</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="settingsDialog">
+      <form method="dialog" class="dialog-card settings-form" id="settingsForm">
+        <button class="dialog-close" value="cancel" aria-label="Đóng">×</button>
+        <span class="dialog-icon">⚙️</span>
+        <h2 id="settingsTitle">Mục tiêu hằng ngày</h2>
+        <p id="settingsDescription">Chọn lượng nước phù hợp với nhịp sống của bạn.</p>
+        <label class="input-label" for="goalInput">Mục tiêu (ml)</label>
+        <input id="goalInput" type="number" inputmode="numeric" min="500" max="10000" step="100" required />
+        <div class="dialog-actions"><button value="cancel" class="secondary-button" type="button" id="cancelSettings">Hủy</button><button class="primary-button" value="default" type="submit">Lưu thay đổi</button></div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
