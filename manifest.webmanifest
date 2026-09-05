@@ -1,0 +1,19 @@
+{
+  "name": "Giọt Nước",
+  "short_name": "Giọt Nước",
+  "description": "Theo dõi và duy trì thói quen uống nước mỗi ngày.",
+  "lang": "vi",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fbfa",
+  "theme_color": "#0f766e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
